@@ -267,3 +267,7 @@ footer{border-top:1px solid #ffffff10;padding:64px 0 44px;background:var(--obsid
   .form-embed iframe{height:620px}
   .ba{aspect-ratio:3/4}
 }
+
+
+/* Fix: evita el "fantasma" del footer duplicado en el nav (bug del compositor de Chrome) */
+footer{position:relative;z-index:1;transform:translateZ(0)}
