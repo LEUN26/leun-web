@@ -123,16 +123,19 @@
           <svg class="svc-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M6 14h36M6 14v26h36V14M6 14l4-6h28l4 6M18 24v8M30 24v8"/></svg>
           <h3>Cocinas</h3>
           <p>Proyectos de cocina a medida pensados desde la arquitectura del espacio. La pieza que organiza la casa entera.</p>
+          <a class="svc-more" href="cocinas.html">Saber más →</a>
         </article>
         <article class="svc reveal d1">
           <svg class="svc-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 6h32v36H8zM24 6v36M14 16v6M34 16v6M14 30v6M34 30v6"/></svg>
           <h3>Vestidores &amp; Armarios</h3>
           <p>Sistemas de organización que definen el espacio. Cada objeto en su sitio, cada superficie con intención.</p>
+          <a class="svc-more" href="vestidores.html">Saber más →</a>
         </article>
         <article class="svc reveal d2">
           <svg class="svc-icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M4 42L24 6l20 36zM24 6v36M14 24h20M9 33h30"/></svg>
           <h3>Proyecto Completo</h3>
           <p>Desde el primer trazo hasta la última pieza instalada. Diseño, materia y dirección de obra bajo una sola mirada.</p>
+          <a class="svc-more" href="proyecto-completo.html">Saber más →</a>
         </article>
       </div>
     </div>
@@ -171,15 +174,15 @@
       </div>
       <div class="portfolio-grid">
         <a class="proj reveal" href="#contacto" aria-label="Cocina en mármol">
-          <picture><source type="image/webp" srcset="assets/img/hero.webp"><img src="assets/img/hero.jpg" alt="Cocina en mármol con isla central y campana de madera alistonada" loading="lazy" decoding="async" width="1586" height="672"></picture>
-          <span class="proj-info"><h3>Cocina en mármol</h3><span class="proj-tags">Isla central · Campana alistonada</span></span>
+          <img src="assets/img/local-marmol.jpg" alt="Exposición de cocina en mármol del estudio LEUN con isla, vinotecas y frente de armarios lacados" loading="lazy" decoding="async" width="1586" height="672">
+          <span class="proj-info"><h3>Cocina en mármol</h3><span class="proj-tags">Isla central · Vinoteca integrada</span></span>
         </a>
         <a class="proj reveal" href="#contacto" aria-label="Cocina y comedor">
           <picture><source type="image/webp" srcset="assets/img/proy-comedor.webp"><img src="assets/img/proy-comedor.jpg" alt="Cocina abierta integrada con comedor y vinoteca" loading="lazy" decoding="async" width="1586" height="672"></picture>
           <span class="proj-info"><h3>Cocina + comedor</h3><span class="proj-tags">Vinoteca y office · Open plan</span></span>
         </a>
         <a class="proj reveal" href="#contacto" aria-label="Salón y cocina">
-          <picture><source type="image/webp" srcset="assets/img/proy-salon.webp"><img src="assets/img/proy-salon.jpg" alt="Salón conectado con cocina en planta abierta" loading="lazy" decoding="async" width="1586" height="672"></picture>
+          <img src="assets/img/local-living.jpg" alt="Zona living del estudio LEUN: salón con sofá conectado a cocina abierta" loading="lazy" decoding="async" width="1586" height="672">
           <span class="proj-info"><h3>Salón + cocina</h3><span class="proj-tags">Espacio conectado /HOMING\</span></span>
         </a>
         <a class="proj reveal" href="#contacto" aria-label="Materioteca">
@@ -191,8 +194,8 @@
           <span class="proj-info"><h3>Cocina + isla</h3><span class="proj-tags">Showroom · Encimera de cuarzo</span></span>
         </a>
         <a class="proj reveal" href="#contacto" aria-label="Zona de proyecto">
-          <picture><source type="image/webp" srcset="assets/img/estudio.webp"><img src="assets/img/estudio.jpg" alt="Zona de proyecto del estudio con mesa de diseño y muestrario" loading="lazy" decoding="async" width="1586" height="672"></picture>
-          <span class="proj-info"><h3>Zona de proyecto</h3><span class="proj-tags">Mesa de diseño · Muestrario</span></span>
+          <img src="assets/img/local-oficina.jpg" alt="Zona de proyecto del estudio LEUN con mesas de trabajo y biblioteca de materiales" loading="lazy" decoding="async" width="1586" height="672">
+          <span class="proj-info"><h3>Zona de proyecto</h3><span class="proj-tags">Mesa de diseño · Materioteca</span></span>
         </a>
       </div>
     </div>
@@ -308,6 +311,29 @@
     </div>
   </div>
 </footer>
+
+<!-- Lightbox del portfolio -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="lb-close" id="lbClose" aria-label="Cerrar">×</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-cap" id="lbCap"></div>
+  <a class="lb-cta" href="#contacto" id="lbCta">Quiero algo así →</a>
+</div>
+
+<!-- Botón flotante de WhatsApp: se activa poniendo el número (solo dígitos, con prefijo país, ej. 34600000000) -->
+<a id="waBtn" class="wa-float" href="#" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp" hidden>
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.3 4 14.9c0 2.6.8 5 2.3 7L4.5 28l6.3-1.7c1.9 1.1 4.1 1.6 6.2 1.6 6.6 0 12-5.3 12-11.9S22.6 3 16 3zm0 21.8c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-3.7 1 1-3.6-.3-.4c-1.3-1.7-2-3.8-2-6 0-5.4 4.4-9.8 9.8-9.8s9.8 4.4 9.8 9.8-4.4 9.7-9.8 9.7zm5.4-7.3c-.3-.1-1.7-.9-2-1s-.5-.1-.7.1-.8 1-.9 1.2-.3.2-.6.1c-.3-.1-1.2-.5-2.4-1.5-.9-.8-1.5-1.8-1.6-2.1s0-.5.1-.6l.4-.5c.1-.2.2-.3.3-.5s0-.4 0-.5c0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4s-1 1-1 2.5 1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5.7.3 1.3.5 1.7.6.7.2 1.4.2 1.9.1.6-.1 1.7-.7 2-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/></svg>
+</a>
+<script>
+(function(){
+  var WHATSAPP = ''; // ← poner aquí el número cuando exista, ej. '34600000000'
+  var b = document.getElementById('waBtn');
+  if (WHATSAPP) {
+    b.href = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent('Hola, me gustaría información sobre un proyecto de interiorismo.');
+    b.hidden = false;
+  }
+})();
+</script>
 
 <script src="js/main.js" defer></script>
 </body>

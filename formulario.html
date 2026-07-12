@@ -240,6 +240,10 @@ textarea{resize:vertical;min-height:58px}
   var prev = document.getElementById('prev'), next = document.getElementById('next');
   var err = document.getElementById('err'), dots = document.getElementById('dots');
   var ENDPOINT = 'https://formsubmit.co/ajax/iguainlopez@gmail.com';
+  /* Integración CRM LEUN (Supabase). Rellenar con los MISMOS datos configurados en el CRM
+     (Project URL y anon key). Si están vacíos, solo se envía el email. */
+  var SUPA_URL = '';   // ej. 'https://abcdefgh.supabase.co'
+  var SUPA_KEY = '';   // anon key
 
   for (var i=0;i<6;i++){ var s=document.createElement('span'); dots.appendChild(s); }
 
@@ -318,6 +322,19 @@ textarea{resize:vertical;min-height:58px}
     }
     next.disabled = true; next.textContent = 'Enviando…';
     var d = collect();
+
+    /* Copia del lead al CRM LEUN (no bloquea el envío del email si falla) */
+    if (SUPA_URL && SUPA_KEY) {
+      var mensaje = Object.keys(d)
+        .filter(function(k){ return ['Nombre','Teléfono','Email'].indexOf(k) === -1; })
+        .map(function(k){ return k + ': ' + d[k]; }).join(' | ');
+      fetch(SUPA_URL + '/rest/v1/leun_leads_web', {
+        method: 'POST',
+        headers: { 'Content-Type':'application/json', 'apikey':SUPA_KEY, 'Authorization':'Bearer '+SUPA_KEY, 'Prefer':'return=minimal' },
+        body: JSON.stringify({ nombre:d['Nombre']||'', telefono:d['Teléfono']||'', email:d['Email']||'', mensaje:mensaje, canal:'Formulario web' })
+      }).catch(function(){});
+    }
+
     d._subject = 'Nueva consulta web · ' + (d['Nombre']||'');
     d._template = 'table';
     d._captcha = 'false';
