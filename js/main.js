@@ -78,6 +78,38 @@
     set(50);
   });
 
+  /* --- Lightbox del portfolio --- */
+  var lb = document.getElementById('lb');
+  if (lb) {
+    var lbImg = document.getElementById('lbImg');
+    var lbCap = document.getElementById('lbCap');
+    var lastFocus = null;
+    var open = function (proj) {
+      var img = proj.querySelector('img');
+      var h3 = proj.querySelector('h3');
+      var tags = proj.querySelector('.proj-tags');
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.alt;
+      lbCap.innerHTML = (h3 ? h3.textContent : '') + (tags ? '<small>' + tags.textContent + '</small>' : '');
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      lastFocus = proj;
+      document.getElementById('lbClose').focus();
+    };
+    var close = function () {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    };
+    document.querySelectorAll('.proj').forEach(function (proj) {
+      proj.addEventListener('click', function (e) { e.preventDefault(); open(proj); });
+    });
+    document.getElementById('lbClose').addEventListener('click', close);
+    document.getElementById('lbCta').addEventListener('click', close);
+    lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lb.classList.contains('open')) close(); });
+  }
+
   /* --- Año dinámico en el footer --- */
   var y = document.getElementById('year');
   if (y) y.textContent = new Date().getFullYear();
