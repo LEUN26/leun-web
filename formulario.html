@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Formulario de contacto · LEUN Interiorismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#1A1410; --gold:#B89660; --gold-dark:#7A6234;
+  --bg:#F6EEE3; --panel:#F2EDE6; --ink:#1A1410; --mut:#9E8A72;
+  --line:#E2D8CC; --err:#B0442F;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;font-weight:300;background:var(--bg);color:var(--ink);min-height:100vh}
+b,strong{font-weight:500}
+.layout{display:flex;min-height:100vh}
+
+/* ---- Panel izquierdo ---- */
+.side{width:280px;flex:0 0 280px;background:var(--dark);color:var(--bg);padding:44px;display:flex;flex-direction:column;justify-content:space-between}
+.side .brand{font-family:'Playfair Display',serif;font-size:22px;letter-spacing:.3em}
+.side .brand small{display:block;font-family:'DM Sans',sans-serif;font-size:10px;letter-spacing:.28em;opacity:.5;margin-top:6px}
+.side .step-info .n{font-size:11px;letter-spacing:.2em;color:var(--gold);margin-bottom:12px}
+.side .step-info h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:400;font-style:italic;line-height:1.25}
+.dots{display:flex;gap:8px}
+.dots span{width:6px;height:4px;border-radius:2px;background:#F6EEE32e;transition:.3s}
+.dots span.on{width:22px;background:var(--gold)}
+
+/* ---- Área de formulario ---- */
+.main{flex:1;display:flex;flex-direction:column;min-width:0}
+.bar{height:2px;background:var(--line)}
+.bar i{display:block;height:2px;background:var(--gold);transition:width .4s ease}
+.content{flex:1;padding:36px 48px 24px;overflow-y:auto}
+.step{display:none}
+.step.on{display:block;animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+h3{font-family:'Playfair Display',serif;font-size:24px;font-weight:400;margin-bottom:6px}
+.sub{font-size:13.5px;color:var(--mut);margin-bottom:24px}
+.fld{margin-bottom:18px}
+.fld>label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:7px}
+input[type=text],input[type=tel],input[type=email],input[type=url],textarea{
+  width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:2px;background:#fff;
+  font:300 14px 'DM Sans',sans-serif;color:var(--ink);transition:border-color .2s}
+input:focus,textarea:focus{outline:none;border-color:var(--gold)}
+textarea{resize:vertical;min-height:58px}
+.opts{display:grid;gap:8px}
+.opts.g2{grid-template-columns:1fr 1fr}
+.oc{position:relative;border:1px solid var(--line);border-radius:2px;background:#fff;padding:12px 14px;cursor:pointer;display:block;transition:border-color .2s,background .2s}
+.oc input{position:absolute;opacity:0;pointer-events:none}
+.oc .t{display:block;font-size:14px}
+.oc .d{display:block;font-size:12px;color:var(--mut);margin-top:2px}
+.oc:has(input:checked){border-color:var(--gold);background:#B896601a}
+.pills{display:flex;gap:8px}
+.pill{position:relative;border:1px solid var(--line);background:#fff;border-radius:2px;padding:9px 22px;font-size:13px;cursor:pointer}
+.pill:has(input:checked){border-color:var(--gold);background:#B896601a}
+.pill input{position:absolute;opacity:0}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 48px 26px;border-top:1px solid var(--line)}
+.btn{border:0;background:var(--gold);color:var(--dark);font:400 11px 'DM Sans',sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;padding:14px 30px;border-radius:2px;cursor:pointer;min-height:44px;transition:opacity .2s}
+.btn:hover{opacity:.85}
+.btn.ghost{background:none;color:var(--gold-dark);border:1px solid var(--line)}
+.hint-err{color:var(--err);font-size:12.5px;display:none;margin-right:auto}
+/* Resumen */
+.sum{border:1px solid var(--line);background:#fff;border-radius:2px;padding:16px 18px;margin-bottom:14px}
+.sum h4{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:10px}
+.sum .r{display:flex;gap:12px;font-size:13.5px;padding:3px 0}
+.sum .r b{flex:0 0 auto;min-width:132px;font-weight:400;color:var(--mut)}
+.rgpd{display:flex;gap:10px;align-items:flex-start;font-size:12.5px;color:var(--mut);line-height:1.6;margin:6px 0 4px}
+.rgpd input{margin-top:3px;accent-color:var(--gold-dark)}
+.rgpd a{color:var(--gold-dark);text-decoration:underline}
+/* Gracias */
+.thanks{text-align:center;padding:60px 20px}
+.thanks h3{font-size:30px;margin-bottom:14px}
+.thanks p{font-size:14px;color:var(--mut);max-width:380px;margin:0 auto;line-height:1.8}
+@media(max-width:760px){
+  .side{display:none}
+  .content{padding:26px 20px 16px}
+  .foot{padding:14px 20px 20px}
+  .opts.g2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side" aria-hidden="true">
+    <div class="brand"><b>LEUN</b><small>INTERIORISMO · DONOSTIA</small></div>
+    <div class="step-info">
+      <div class="n" id="sideN">PASO 1 / 6</div>
+      <h2 id="sideT">Datos personales</h2>
+    </div>
+    <div class="dots" id="dots"></div>
+  </aside>
+
+  <div class="main">
+    <div class="bar"><i id="prog" style="width:14%"></i></div>
+
+    <form id="f" class="content" novalidate>
+      <!-- honeypot -->
+      <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+      <!-- 1 · DATOS PERSONALES -->
+      <section class="step on" data-t="Datos personales">
+        <h3>Empecemos por conocerte</h3>
+        <p class="sub">Solo lo imprescindible para poder responderte.</p>
+        <div class="fld"><label for="nombre">Nombre completo *</label><input id="nombre" type="text" name="Nombre" required autocomplete="name"></div>
+        <div class="fld"><label for="tel">Teléfono *</label><input id="tel" type="tel" name="Teléfono" required autocomplete="tel"></div>
+        <div class="fld"><label for="email">Correo electrónico *</label><input id="email" type="email" name="Email" required autocomplete="email"></div>
+        <div class="fld"><label for="dir">Localización del proyecto</label><input id="dir" type="text" name="Localización" placeholder="Ciudad / barrio"></div>
+        <div class="fld"><label for="hab">¿Quién vive en casa?</label><textarea id="hab" name="Convivientes" rows="2" placeholder="Ej: 2 adultos, 1 niño de 6 años, 1 perro…"></textarea></div>
+      </section>
+
+      <!-- 2 · EL ESPACIO -->
+      <section class="step" data-t="El espacio">
+        <h3>El espacio</h3>
+        <p class="sub">Cuéntanos sobre el estado actual y el alcance del proyecto.</p>
+        <div class="fld"><label>Tipo de proyecto</label>
+          <div class="opts">
+            <label class="oc"><input type="radio" name="Tipo de proyecto" value="Nuevo proyecto"><span class="t">Nuevo proyecto</span><span class="d">Espacio sin intervención previa</span></label>
+            <label class="oc"><input type="radio" name="Tipo de proyecto" value="Reforma integral"><span class="t">Reforma integral</span><span class="d">Renovación completa del hogar</span></label>
+            <label class="oc"><input type="radio" name="Tipo de proyecto" value="Renovación de cocina"><span class="t">Renovación de cocina</span><span class="d">Intervención exclusiva en cocina</span></label>
+          </div>
+        </div>
+        <div class="fld"><label>Estado actual del espacio</label>
+          <div class="opts">
+            <label class="oc"><input type="radio" name="Estado actual" value="Cocina cerrada / independiente"><span class="t">Cocina cerrada / independiente</span></label>
+            <label class="oc"><input type="radio" name="Estado actual" value="Cocina abierta al salón"><span class="t">Cocina abierta al salón</span><span class="d">Concepto open space</span></label>
+            <label class="oc"><input type="radio" name="Estado actual" value="Me gustaría abrirla"><span class="t">Me gustaría abrirla</span><span class="d">Eliminar particiones existentes</span></label>
+          </div>
+        </div>
+        <div class="fld"><label for="inst">Instalaciones existentes</label><textarea id="inst" name="Instalaciones" rows="2" placeholder="Agua, gas, ventilación… ¿pueden modificarse o deben conservarse?"></textarea></div>
+      </section>
+
+      <!-- 3 · ESTILO DE VIDA -->
+      <section class="step" data-t="Estilo de vida">
+        <h3>Tu estilo de vida</h3>
+        <p class="sub">La cocina perfecta se diseña para cómo vives tú.</p>
+        <div class="fld"><label>¿Con qué frecuencia cocinas?</label>
+          <div class="opts">
+            <label class="oc"><input type="radio" name="Frecuencia" value="A diario"><span class="t">A diario</span><span class="d">La cocina es el corazón del hogar</span></label>
+            <label class="oc"><input type="radio" name="Frecuencia" value="Ocasionalmente"><span class="t">Ocasionalmente</span><span class="d">Fines de semana y eventos especiales</span></label>
+            <label class="oc"><input type="radio" name="Frecuencia" value="Poco"><span class="t">Poco</span><span class="d">Comidas rápidas principalmente</span></label>
+          </div>
+        </div>
+        <div class="fld"><label>¿Mucha despensa?</label>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="Despensa" value="Sí">Sí</label>
+            <label class="pill"><input type="radio" name="Despensa" value="No">No</label>
+          </div>
+        </div>
+        <div class="fld"><label>Usos adicionales de la cocina</label>
+          <div class="opts">
+            <label class="oc"><input type="checkbox" name="Usos" value="Snacks y comida rápida del día a día"><span class="t">Snacks y comida rápida del día a día</span></label>
+            <label class="oc"><input type="checkbox" name="Usos" value="Zona de encuentro con amigos y familia"><span class="t">Zona de encuentro con amigos y familia</span></label>
+            <label class="oc"><input type="checkbox" name="Usos" value="Espacio para los niños"><span class="t">Espacio para los niños</span></label>
+            <label class="oc"><input type="checkbox" name="Usos" value="Rincón de teletrabajo"><span class="t">Rincón de teletrabajo</span></label>
+          </div>
+        </div>
+        <div class="fld"><label for="electro">Electrodomésticos esenciales</label><textarea id="electro" name="Electrodomésticos" rows="2" placeholder="Ej: horno de torre, cafetera integrada, vinoteca, microondas…"></textarea></div>
+      </section>
+
+      <!-- 4 · TU ESTÉTICA -->
+      <section class="step" data-t="Tu estética">
+        <h3>Tu estética</h3>
+        <p class="sub">No hace falta saber de estilos: marca lo que te atraiga.</p>
+        <div class="fld"><label>Estilo visual</label>
+          <div class="opts g2">
+            <label class="oc"><input type="radio" name="Estilo" value="Minimal / Puro"><span class="t">Minimal / Puro</span><span class="d">Todo oculto, líneas limpias</span></label>
+            <label class="oc"><input type="radio" name="Estilo" value="Natural / Nórdico"><span class="t">Natural / Nórdico</span><span class="d">Maderas claras, tonos tierra</span></label>
+            <label class="oc"><input type="radio" name="Estilo" value="Cálido / Rústico moderno"><span class="t">Cálido / Rústico moderno</span><span class="d">Calidez, texturas naturales</span></label>
+            <label class="oc"><input type="radio" name="Estilo" value="Clásico / Atemporal"><span class="t">Clásico / Atemporal</span><span class="d">Elegancia, materiales nobles</span></label>
+            <label class="oc"><input type="radio" name="Estilo" value="Contemporáneo"><span class="t">Contemporáneo</span><span class="d">Mezcla de estilos, personal</span></label>
+          </div>
+        </div>
+        <div class="fld"><label for="cgusta">Colores que te gustan</label><input id="cgusta" type="text" name="Colores que gustan"></div>
+        <div class="fld"><label for="codia">Colores que evitas</label><input id="codia" type="text" name="Colores que evita"></div>
+        <div class="fld"><label>Material preferido para la encimera</label>
+          <div class="opts g2">
+            <label class="oc"><input type="radio" name="Encimera" value="Porcelana / Ultra-compacto"><span class="t">Porcelana / Ultra-compacto</span><span class="d">Dekton, Neolith — máxima resistencia</span></label>
+            <label class="oc"><input type="radio" name="Encimera" value="Cuarzo"><span class="t">Cuarzo</span><span class="d">Silestone — elegante y duradero</span></label>
+            <label class="oc"><input type="radio" name="Encimera" value="Piedra natural"><span class="t">Piedra natural</span><span class="d">Mármol, granito — carácter único</span></label>
+            <label class="oc"><input type="radio" name="Encimera" value="Madera"><span class="t">Madera</span><span class="d">Calidez y naturalidad</span></label>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5 · INSPIRACIÓN -->
+      <section class="step" data-t="Inspiración">
+        <h3>Inspiración</h3>
+        <p class="sub">Cualquier referencia nos ayuda a afinar la propuesta.</p>
+        <div class="fld"><label for="refv">¿Tienes alguna referencia visual que te haya inspirado?</label><textarea id="refv" name="Referencia visual" rows="2" placeholder="Un modelo de Saitra, una foto, un proyecto que viste…"></textarea></div>
+        <div class="fld"><label for="pin">Pinterest u otras referencias visuales</label><input id="pin" type="url" name="Pinterest" placeholder="Enlace a tu tablero (opcional)"></div>
+        <div class="fld"><label for="prob">¿Cuál es el mayor problema de tu cocina actual?</label><textarea id="prob" name="Problema actual" rows="2"></textarea></div>
+        <div class="fld"><label for="inneg">¿Hay algún elemento innegociable para ti?</label><textarea id="inneg" name="Innegociable" rows="2"></textarea></div>
+      </section>
+
+      <!-- 6 · PRESUPUESTO -->
+      <section class="step" data-t="Presupuesto">
+        <h3>Presupuesto y plazos</h3>
+        <p class="sub">Una orientación sincera nos permite proponerte lo adecuado.</p>
+        <div class="fld"><label>¿Qué inversión tienes en mente? (muebles + instalación + electrodomésticos)</label>
+          <div class="opts g2">
+            <label class="oc"><input type="radio" name="Presupuesto" value="Menos de 10.000 €"><span class="t">Menos de 10.000 €</span></label>
+            <label class="oc"><input type="radio" name="Presupuesto" value="10.000 — 20.000 €"><span class="t">10.000 — 20.000 €</span></label>
+            <label class="oc"><input type="radio" name="Presupuesto" value="20.000 — 35.000 €"><span class="t">20.000 — 35.000 €</span></label>
+            <label class="oc"><input type="radio" name="Presupuesto" value="Más de 35.000 €"><span class="t">Más de 35.000 €</span><span class="d">Proyectos de alta gama</span></label>
+          </div>
+        </div>
+        <div class="fld"><label for="plazo">¿Cuándo te gustaría iniciar el proyecto?</label><input id="plazo" type="text" name="Plazo" placeholder="Ej: en 3 meses, primavera 2027…"></div>
+      </section>
+
+      <!-- 7 · RESUMEN -->
+      <section class="step" data-t="Resumen">
+        <h3>Resumen de tu consulta</h3>
+        <p class="sub">Revisa que todo esté correcto antes de enviarla.</p>
+        <div id="resumen"></div>
+        <label class="rgpd">
+          <input type="checkbox" id="rgpd" required>
+          <span>He leído y acepto la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>. Consiento que LEUN Interiorismo trate estos datos para responder a mi consulta.</span>
+        </label>
+      </section>
+    </form>
+
+    <div class="foot">
+      <button type="button" class="btn ghost" id="prev" style="visibility:hidden">← Anterior</button>
+      <span class="hint-err" id="err">Revisa los campos obligatorios.</span>
+      <button type="button" class="btn" id="next">Siguiente →</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var titles = ['Datos personales','El espacio','Estilo de vida','Tu estética','Inspiración','Presupuesto','Resumen'];
+  var cur = 0, form = document.getElementById('f');
+  var prev = document.getElementById('prev'), next = document.getElementById('next');
+  var err = document.getElementById('err'), dots = document.getElementById('dots');
+  var ENDPOINT = 'https://formsubmit.co/ajax/iguainlopez@gmail.com';
+
+  for (var i=0;i<6;i++){ var s=document.createElement('span'); dots.appendChild(s); }
+
+  function paintDots(){
+    [].forEach.call(dots.children,function(s,i){ s.classList.toggle('on', i===Math.min(cur,5)); });
+  }
+
+  function collect(){
+    var d = {}, fd = new FormData(form);
+    fd.forEach(function(v,k){
+      if (k.charAt(0)==='_') return;
+      if (!v) return;
+      d[k] = d[k] ? d[k] + ', ' + v : v;
+    });
+    return d;
+  }
+
+  function renderSummary(){
+    var d = collect(), box = document.getElementById('resumen');
+    var groups = [
+      ['01 Datos personales',['Nombre','Teléfono','Email','Localización','Convivientes']],
+      ['02 El espacio',['Tipo de proyecto','Estado actual','Instalaciones']],
+      ['03 Estilo de vida',['Frecuencia','Despensa','Usos','Electrodomésticos']],
+      ['04 Estética',['Estilo','Colores que gustan','Colores que evita','Encimera']],
+      ['05 Inspiración',['Referencia visual','Pinterest','Problema actual','Innegociable']],
+      ['06 Presupuesto',['Presupuesto','Plazo']]
+    ];
+    box.innerHTML = groups.map(function(g){
+      var rows = g[1].filter(function(k){return d[k];}).map(function(k){
+        return '<div class="r"><b>'+k+'</b><span>'+String(d[k]).replace(/</g,'&lt;')+'</span></div>';
+      }).join('');
+      return rows ? '<div class="sum"><h4>'+g[0]+'</h4>'+rows+'</div>' : '';
+    }).join('') || '<p class="sub">No has rellenado ningún campo todavía.</p>';
+  }
+
+  function validStep(){
+    if (cur !== 0) return true;
+    var ok = true;
+    ['nombre','tel','email'].forEach(function(id){
+      var el = document.getElementById(id);
+      var good = el.value.trim() && (id!=='email' || /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value));
+      el.style.borderColor = good ? '' : 'var(--err)';
+      if (!good) ok = false;
+    });
+    return ok;
+  }
+
+  function show(n){
+    steps[cur].classList.remove('on');
+    cur = n;
+    steps[cur].classList.add('on');
+    var last = cur === steps.length-1;
+    document.getElementById('prog').style.width = ((cur+1)/steps.length*100)+'%';
+    document.getElementById('sideN').textContent = last ? 'RESUMEN' : 'PASO '+(cur+1)+' / 6';
+    document.getElementById('sideT').textContent = titles[cur];
+    prev.style.visibility = cur===0 ? 'hidden' : 'visible';
+    next.textContent = last ? 'Enviar consulta' : (cur===steps.length-2 ? 'Ver resumen →' : 'Siguiente →');
+    err.style.display='none';
+    err.textContent = 'Revisa los campos obligatorios.';
+    if (last) renderSummary();
+    paintDots();
+    form.scrollTop = 0;
+  }
+
+  prev.addEventListener('click', function(){ if (cur>0) show(cur-1); });
+
+  next.addEventListener('click', function(){
+    if (cur < steps.length-1){
+      if (!validStep()){ err.style.display='inline'; return; }
+      show(cur+1); return;
+    }
+    /* Enviar */
+    if (!document.getElementById('rgpd').checked){
+      err.textContent = 'Debes aceptar la política de privacidad.';
+      err.style.display='inline'; return;
+    }
+    next.disabled = true; next.textContent = 'Enviando…';
+    var d = collect();
+    d._subject = 'Nueva consulta web · ' + (d['Nombre']||'');
+    d._template = 'table';
+    d._captcha = 'false';
+    fetch(ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body: JSON.stringify(d)
+    }).then(function(r){ if(!r.ok) throw 0; return r.json(); })
+    .then(function(){
+      document.querySelector('.main').innerHTML =
+        '<div class="thanks"><h3>¡Gracias!</h3>'+
+        '<p>Hemos recibido tu consulta. Te responderemos en menos de 48&nbsp;horas para concertar una primera conversación en nuestro estudio de Donostia.</p></div>';
+    })
+    .catch(function(){
+      next.disabled = false; next.textContent = 'Enviar consulta';
+      err.textContent = 'No se pudo enviar. Inténtalo de nuevo más tarde.';
+      err.style.display='inline';
+    });
+  });
+
+  paintDots();
+})();
+</script>
+</body>
+</html>

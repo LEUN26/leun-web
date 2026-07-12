@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://leun26.github.io/leun-web/sitemap.xml
