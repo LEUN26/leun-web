@@ -88,7 +88,10 @@ nav.scrolled{
 .hero h1{
   font-size:clamp(56px,12vw,124px);color:var(--ink);letter-spacing:.1em;
   font-weight:800;padding-left:.1em;
+  display:flex;flex-direction:column;align-items:center;gap:22px;
   opacity:0;animation:fadeUp 1.4s cubic-bezier(.16,.7,.3,1) .2s forwards}
+.hero-mark__iso{height:clamp(64px,10vw,110px);width:auto;display:block}
+.hero-mark__word{height:clamp(16px,2.4vw,26px);width:auto;display:block}
 .hero .sub{font-family:'Inter',sans-serif;font-size:clamp(13px,1.4vw,16px);font-weight:400;color:var(--ink-soft);opacity:.85;letter-spacing:.12em;margin-top:14px;
   opacity:0;animation:fadeUp 1.4s cubic-bezier(.16,.7,.3,1) .55s forwards}
 .hero .sub i{font-style:italic;color:var(--ink)}
