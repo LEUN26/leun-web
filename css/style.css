@@ -10,7 +10,8 @@
   --surface0:#1F1F1F;     /* surface-0 (oscuro) — campos, fondos recesados */
   --ink:#F5F2EB;          /* texto principal, logotipo, botones sólidos */
   --ink-soft:#EFEBE3;     /* texto de apoyo (usar con opacidad reducida) */
-  --line:rgba(245,242,235,.18); /* divisores — sustituye a bordes gruesos y sombras */
+  --line:rgba(245,242,235,.18);
+  --accent:#8A8278; /* divisores — sustituye a bordes gruesos y sombras */
   --white:#FFFFFF;
   --maxw:1280px;
 }
@@ -32,7 +33,7 @@ section{position:relative}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 .eyebrow{
   font-size:11px;letter-spacing:.32em;text-transform:uppercase;
-  color:var(--ink);opacity:.7;font-weight:500;margin-bottom:20px;display:inline-block;
+  color:var(--accent);opacity:1;font-weight:500;margin-bottom:20px;display:inline-block;
 }
 
 /* Texto solo para lectores de pantalla / SEO */
@@ -107,12 +108,15 @@ nav.scrolled{
 /* ---------- SERVICIOS ---------- */
 .services{padding:100px 0 110px;background:var(--bg)}
 .grid3{display:grid;grid-template-columns:1fr;gap:14px}
-.svc{padding:40px 28px;border:1px solid var(--line);transition:border-color .5s,background .5s}
-.svc:hover{border-color:var(--ink);background:var(--panel)}
-.svc-icon{width:46px;height:46px;stroke:var(--ink);stroke-width:1;fill:none;margin-bottom:28px}
-.svc h3{font-size:22px;margin-bottom:14px}
-.svc p{color:var(--ink-soft);opacity:.75;font-size:15.5px}
-.svc-more{display:inline-block;margin-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .3s}
+.svc{position:relative;overflow:hidden;aspect-ratio:6/5;padding:32px 26px;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .6s cubic-bezier(.16,.7,.3,1)}
+.svc-bg{position:absolute;inset:0;z-index:0}
+.svc-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.25) brightness(.55);transition:transform 1.4s cubic-bezier(.16,.7,.3,1),filter .8s}
+.svc-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(31,31,31,.1) 0%,rgba(31,31,31,.88) 100%)}
+.svc:hover .svc-bg img{transform:scale(1.06);filter:grayscale(.1) brightness(.7)}
+.svc-icon{position:relative;z-index:1;width:38px;height:38px;stroke:var(--ink);stroke-width:1;fill:none;margin-bottom:20px}
+.svc h3{position:relative;z-index:1;font-size:22px;margin-bottom:12px}
+.svc p{position:relative;z-index:1;color:var(--ink-soft);opacity:.9;font-size:15.5px}
+.svc-more{position:relative;z-index:1;display:inline-block;margin-top:18px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:2px;transition:border-color .3s}
 .svc-more:hover{border-color:var(--ink)}
 
 /* ---------- ELECTRODOMÉSTICOS ---------- */
@@ -126,8 +130,11 @@ nav.scrolled{
 .appl p{color:var(--ink-soft);opacity:.75;font-size:15px}
 
 /* ---------- FILOSOFÍA ---------- */
-.philo{background:var(--panel);color:var(--ink);padding:100px 0}
-.philo .wrap{max-width:880px;text-align:center}
+.philo{position:relative;color:var(--ink);padding:120px 0;overflow:hidden}
+.philo-media{position:absolute;inset:0;z-index:0}
+.philo-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(.3) brightness(.5)}
+.philo-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(42,42,42,.72) 0%,rgba(31,31,31,.9) 100%)}
+.philo .wrap{position:relative;z-index:2;max-width:880px;text-align:center}
 .philo .big{font-family:'Montserrat',sans-serif;font-size:clamp(48px,9vw,88px);font-weight:800;color:var(--ink);letter-spacing:.04em;margin-bottom:14px}
 .philo p{font-size:clamp(17px,2vw,21px);font-weight:300;color:var(--ink-soft);opacity:.9;max-width:680px;margin:0 auto 36px;line-height:1.85}
 .philo .quote{font-style:italic;font-size:clamp(20px,2.6vw,26px);color:var(--ink);margin:0 auto 44px;max-width:560px;position:relative}
@@ -208,7 +215,7 @@ nav.scrolled{
 .coll h3{font-size:26px;letter-spacing:.04em;margin-bottom:4px}
 .coll .mean{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);opacity:.75;margin-bottom:14px}
 .coll p{color:var(--ink-soft);opacity:.75;font-size:15px}
-.coll-hint{text-align:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);opacity:.5;margin-top:8px}
+.coll-hint{text-align:center;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);opacity:.9;margin-top:8px}
 
 /* ---------- SHOWROOM (Villa Roseta) ---------- */
 .showroom{padding:96px 0 90px;background:var(--bg)}
@@ -253,7 +260,8 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px;background:var(--bg)
   nav.scrolled{padding:16px 32px}
   .nav-links a{font-size:12px}
   .burger{display:none}
-  .grid3{grid-template-columns:repeat(3,1fr)}
+  .grid3{grid-template-columns:repeat(3,1fr);gap:20px}
+  .svc{aspect-ratio:3/4;padding:34px 30px}
   .grid2{grid-template-columns:repeat(2,1fr);gap:48px}
   .appliances{padding:130px 0 140px}
   .services{padding:130px 0 140px}
@@ -273,6 +281,9 @@ footer{border-top:1px solid var(--line);padding:64px 0 44px;background:var(--bg)
     flex-direction:column;justify-content:center;gap:30px;transform:translateX(100%);transition:transform .5s cubic-bezier(.16,.7,.3,1)}
   .nav-links.open{transform:none}
   .nav-links a{font-size:16px}
+  .hero{height:88vh;min-height:520px}
+  .hero-overlay{background:rgba(42,42,42,.4)}
+  .svc{aspect-ratio:4/3}
 }
 @media(max-width:480px){
   .hero h1{letter-spacing:.06em;padding-left:.06em}
