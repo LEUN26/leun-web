@@ -7,7 +7,7 @@
 :root{
   --bg:#2A2A2A;           /* surface-page (oscuro) */
   --panel:#333333;        /* surface-card (oscuro) — bandas ligeramente elevadas */
-  --surface0:#1F1F1F;     /* surface-0 (oscuro) — campos, fondos recesados */
+  --surface0:#333333;     /* surface-0 (oscuro) — antracita, campos y tarjetas recesadas */
   --ink:#F5F2EB;          /* texto principal, logotipo, botones sólidos */
   --ink-soft:#EFEBE3;     /* texto de apoyo (usar con opacidad reducida) */
   --line:rgba(245,242,235,.18);
@@ -62,6 +62,8 @@ nav.scrolled{
 }
 .brand{font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;letter-spacing:.24em;color:var(--ink);padding-left:.24em}
 .brand b{font-weight:800}
+.brand--logo{display:inline-flex;align-items:center;padding-left:0}
+.brand--logo svg{height:22px;width:auto;display:block}
 .nav-links{display:flex;gap:34px;align-items:center}
 .nav-links a{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);opacity:.75;transition:opacity .3s;position:relative}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;background:var(--ink);transition:width .35s ease}
