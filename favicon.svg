@@ -1,6 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="10" fill="#0A0907"/>
-  <text x="50%" y="50%" dy="0.34em" text-anchor="middle"
-        font-family="Playfair Display, Georgia, serif" font-size="40" font-weight="700"
-        fill="#C9A96E">L</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" fill="#EFEBE3"/>
+  <circle cx="256" cy="256" r="184.3" fill="none" stroke="#2A2A2A" stroke-width="6.1"/>
+  <g transform="translate(202.6,169.0) scale(0.58027)">
+    <rect x="0" y="0" width="40" height="300" fill="#2A2A2A"/>
+    <rect x="0" y="260" width="120.0" height="40" fill="#2A2A2A"/>
+    <rect x="144.0" y="0" width="40" height="300" fill="#2A2A2A"/>
+    <polygon points="40.00,0.00 80.00,0.00 184.00,300.00 144.00,300.00" fill="#2A2A2A"/>
+  </g>
 </svg>
